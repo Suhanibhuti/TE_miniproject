@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Page {% endblock title %}
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'homestyle.css' %}">
+{% endblock stylesheet %}
+
+
+{% block content %}
+<div class='container'>
+    <h2>Welcome {{ user_profile.Fname }}</h2>
+    <br><h3><strong> Your Details:</strong></h3>
+    {% if user_profile %}
+        <p><strong> Roll no: {{ user_profile.RN }}</p></strong> 
+        <p><strong> Email: {{ user_profile.Email }}</p></strong> 
+        <p><strong> Date of birth: {{ user_profile.DOB }}</p></strong> 
+        <p><strong> Mobile number: {{ user_profile.MN }}</p></strong> 
+        <p><strong> Gender: {{ user_profile.Gen }}</p></strong> 
+        <p><strong> Current address: {{ user_profile.Caddr }}</p></strong> 
+        <!-- Add other fields as needed -->
+    {% else %}
+        <p>No profile details available.</p>
+    {% endif %}
+ <br>
+ <br>
+ <h2>Your Attendance:</h2>
+ {% with grouped_attendance.items as semester_attendances %}
+ {% if semester_attendances %}
+ <ul>
+     {% for semester, attendances in semester_attendances %}
+         <li><strong>{{ semester }}</strong>:
+             <ul>
+                 {% for attendance in attendances %}
+                     {{ attendance.month }}: {{ attendance.percentage }}% 
+                     <br>
+                 {% endfor %}
+             </ul>
+         </li>
+     {% endfor %}
+ </ul>
+ {% else %}
+ <p>No attendance details available.</p>
+ {% endif %}
+{% endwith %}
+
+<br>
+<br>
+<h2>Your Academic Details:</h2>
+{% if user_ad %}
+<ul>
+    {% for academic_detail in user_ad %}
+        <li>
+            <strong>AT 1: {{ academic_detail.at1 }} marks</strong><br>
+            <strong>AT 2: {{ academic_detail.at2 }} marks</strong><br>
+            <strong>IA 1: {{ academic_detail.ia1 }} marks</strong><br>
+            <strong>IA 2: {{ academic_detail.ia2 }} marks</strong><br>
+            <strong>Prelim: {{ academic_detail.prelim }} marks</strong><br>
+            <strong>End Semester: {{ academic_detail.endsem }} marks</strong><br>
+            <strong>Performance: {{ academic_detail.perf }}</strong><br>
+            <!-- Add other fields as needed -->
+        </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+ <p>No attendance details available.</p>
+
+{% endif %}
+
+</div>
+{% endblock content %}
+
+{% comment %} {% block content %}
+<h2>Welcome {{ user }} </h2>
+
+{% if fetchdata %}
+    <p>Data is present</p>
+    {% for data in fetchdata %}
+        <h1> Welcome {{ data.Fname }} </h1><br>
+        {% comment %} {{ data.RN }}<br> 
+        <!-- Add other fields as needed -->
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No data available</p>
+{% endif %}
+
+{% endblock content %} {% endcomment %}
+
+{% block body %}
+
+{% endblock body %}

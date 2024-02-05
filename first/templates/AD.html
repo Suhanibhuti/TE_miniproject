@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Academic detail {% endblock title %}
+<br>
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'adstyle.css' %}">
+{% endblock stylesheet %}
+
+
+{% block body %}
+<section class="formSection">
+    <div class="container">
+        <div class="form-heading">Student Mentoring Form</div>
+        <form action="/ad" method="post">
+            {% csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Academic Details</span>
+                    <div class="input-field">
+                        <label>Semester</label>
+
+                        <select required name="adSem">
+                            <option disabled selected>Select semester</option>
+                            <option>Semester 1</option>
+                            <option>Semester 2</option>
+                            <option>Semester 3</option>
+                            <option>Semester 4</option>
+                            <option>Semester 5</option>
+                            <option>Semester 6</option>
+                            <option>Semester 7</option>
+                            <option>Semester 8</option>
+                        </select>
+                    </div>
+                  
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Assignment Test 1</label>
+                            <input type="number" name="at1" placeholder="Enter your marks" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Assignment Test 2</label>
+                            <input type="number" name="at2" placeholder="Enter your marks" required>
+                        </div>
+                      
+                        <div class="input-field">
+                            <label>Internal Assesment 1</label>
+                            <input type="number" name="ia1" placeholder="Enter your marks" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Internal Assesment 2</label>
+                            <input type="number" name="ia2" placeholder="Enter your marks" required>
+                        </div>
+                      
+                        <div class="input-field">
+                            <label> Prelium</label>
+                            <input type="number" name="prelim" placeholder="Enter your  marks" required>
+                        </div>
+                        <div class="input-field">
+                            <label>End Semester Exam</label>
+                            <input type="number" name="endsem" placeholder="Enter your  marks" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Performance</label>
+                            <select required name="perf">
+                                <option disabled selected>Select Performance</option>
+                                <option>Clear</option>
+                                <option>Not Clear</option>
+                            </select>
+                        </div>
+                       
+                    </div>
+                    <button class="nextBtn">
+                        <span class="btnText">Submit</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                </div>
+                </div>
+               
+              
+            </div>
+            
+                
+        </form>
+    </div>
+</section>
+
+{% comment %} <script src="adscript.js"></script> {% endcomment %}
+{% load static %}
+    <script src="{% static 'adscript.js' %}"></script>
+
+
+{% endblock body %}

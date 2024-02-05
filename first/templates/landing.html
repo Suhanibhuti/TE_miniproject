@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Landing Page {% endblock title %}
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'landingstyle.css' %}">
+{% endblock stylesheet %}
+
+{% block body %}
+
+<div class="login"> 
+  <div class="square">
+      <h3>STUDENT LOGIN</h3>
+         <button type="submit"><a href="/loginpage">login</a></button>
+  </div>
+</div>
+<div class="login2">
+  <div class="square1">
+      <h3>MENTOR LOGIN</h3>
+         <button type="submit"><a href="#">login</a></button>
+  </div>
+</div>
+
+{% endblock body %}
