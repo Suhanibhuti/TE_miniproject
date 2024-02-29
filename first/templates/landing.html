@@ -7,19 +7,75 @@
 <link rel="stylesheet" href="{% static 'landingstyle.css' %}">
 {% endblock stylesheet %}
 
+{% block navbar %}
+    {# Empty block to override the navigation bar #}
+{% endblock navbar %}
+
 {% block body %}
 
-<div class="login"> 
-  <div class="square">
-      <h3>STUDENT LOGIN</h3>
-         <button type="submit"><a href="/loginpage">login</a></button>
+<div class="bgimg" >
+  <div class="login" > 
+    <div class="square">
+        <h3>STUDENT LOGIN</h3>
+          <button class="login-button" type="submit" ><a href="/loginpage">login</a></button>
+    </div>
+  </div>
+  <div class="login2">
+    <div class="square1">
+        <h3>MENTOR LOGIN</h3>
+          <button class="login-button" type="submit"><a href="#">login</a></button>
+    </div>
   </div>
 </div>
-<div class="login2">
-  <div class="square1">
-      <h3>MENTOR LOGIN</h3>
-         <button type="submit"><a href="#">login</a></button>
+
+
+<!-- =============================================Aboutpage================================================ -->
+
+<section>
+  <div class="aboutpart">
+    <div class="about">
+      <div class="pl">
+      
+       Welcome to <br>
+       Fr. C. Rodrigues Institute of Technology<br>
+       A college with a difference!!
+       <div class="text">
+       Fr. CRIT. has, within a short span of time, established itself as a leading engineering college in Mumbai University. Though its reputation rests mainly on the high quality, value-based technical education that it imparts, it has to its credit a verdant, well-maintained Campus and extensive facilities. Its location in the vicinity of the holy places of various religious denominations underscores its secular credentials and its philosophy of "Vasudhaiva Kuttumbakam". The college prides on being one of few that has accreditation for all five branches.
+        Fr. C. Rodrigues Institute of Technology</div> 
+       </div>
+    </div>
   </div>
-</div>
+
+</section> 
+
+
+<!-- ====================================================footer================================================= -->
+
+<footer>
+  <div class="footertext">
+    <div class="midfootertext">
+      <h2> FR.C.RODRIGUES INSTITUTE OF TECHNOLOGY</h2>
+      Agnel Technical Education Complex Sector 9-A, Vashi, Navi-Mumbai,Maharashtra,India PIN -400703
+      <div class="midhead">email address - principal@fcrit.ac.in , contact no - (022)277710000 , 27662949</div>
+
+      <div class="imgs">
+        <img src="https://fcrit.ac.in/cdn/common_images/twitter.png" alt="">
+        {% comment %} <img src="linkedin.png" alt=""> {% endcomment %}
+        <img src="https://fcrit.ac.in/cdn/common_images/facebook.png" alt="">
+        <img src="https://fcrit.ac.in/cdn/common_images/youtube.png" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <h4>@FCRIt, Vashi , All Rights Reserved</h4>
+    <div class="texts">
+      Developed By:-Purvita Dhakad,
+      Suhani Bhuti,
+      Bernard paul,
+      Shivankur Chavan
+    </div>
+
+  </div>
+</footer>
 
 {% endblock body %}

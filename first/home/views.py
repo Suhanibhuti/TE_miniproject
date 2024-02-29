@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponseRedirect,redirect
-from home.models import pdM,attM,Category,adM
+from home.models import pdM,attM,Category,adM,cocuM,excoM,plcM
 from datetime import datetime
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -27,6 +27,9 @@ def loginpage(request):
             user_profile = pdM.objects.filter(RN=user.username).first()
             user_attendance=attM.objects.filter(user_profile=user_profile)
             user_ad = adM.objects.filter(user=user)
+            user_cocurricular = cocuM.objects.filter(user_profile=user_profile)
+            user_exco = excoM.objects.filter(user_profile=user_profile)
+            placement_details = plcM.objects.all()
             
             
             # print(user_attendance)
@@ -38,7 +41,7 @@ def loginpage(request):
                 grouped_attendance[semester_name].append(attendance)
             # print(grouped_attendance)
             
-            return render(request, 'home/homes.html', {'user_profile': user_profile,'grouped_attendance':grouped_attendance, 'user_ad':user_ad})
+            return render(request, 'home/homes.html', {'user_profile': user_profile,'grouped_attendance':grouped_attendance, 'user_ad':user_ad,'user_cocurricular':user_cocurricular,'user_exco':user_exco,'placement_details': placement_details})
             # return render(request,'home/homes.html',{'user': user})
         else:
             messages.success(request, "Incorrect username or password!")
@@ -112,9 +115,34 @@ def pd(request):
     return render(request,'PD.html')
     #return HttpResponse('this is about page')
 
-def services(request):
-    return render(request,'services.html')
+def oa(request):
+    return render(request,'oa.html')
     #return HttpResponse('this is services page')
+    
+    
+@login_required(login_url='landingpage')  
+def plc(request):
+    if request.method == "POST":
+        print(request.POST) 
+        
+        compname = request.POST.get('compname')
+        package = request.POST.get('package')
+        semester = request.POST.get('semester')
+        
+        # user_profile = pdM.objects.get(RN=request.user.username)
+        if compname and package and semester:
+            # user_instance = user_profile.user
+            user_profile = request.user.pdm
+            placement_data = plcM(compname=compname, package=package, semester=semester, user_profile=user_profile)
+            placement_data.save()
+            messages.success(request, "Placement data submitted successfully!")
+            # return redirect('home/homes')  # Redirect to home page or any other page
+        else:
+            messages.error(request, "Please provide all required information.")
+    return render(request, 'plc.html')
+    # return render(request,'plc.html')
+    #return HttpResponse('this is services page')
+
 
 @login_required(login_url='landingpage') 
 def ad(request):
@@ -125,7 +153,7 @@ def ad(request):
             academic_details.user = request.user
             academic_details.save()
             messages.success(request, "Academic details uploaded!")
-            # return redirect('home/homes')  # Redirect to homes page after successful upload
+            # return redirect('/homes')  # Redirect to homes page after successful upload
     else:
         form = AcademicDetailsForm(initial={'user': request.user})
     
@@ -141,24 +169,36 @@ def homes(request):
         user_profile = pdM.objects.get(RN=user.username)
         user_attendance=attM.objects.filter(user_profile=user_profile)
         user_ad = adM.objects.filter(user=user)
+        user_cocurricular = cocuM.objects.filter(user_profile=user_profile)
+        user_exco = excoM.objects.filter(user_profile=user_profile)
+        placement_details = plcM.objects.all()
         # user_attendance = attM.objects.filter(category__name=user_profile.dep, month__isnull=False)
 
+        grouped_attendance = {}
+        for attendance in user_attendance:
+            semester_name = attendance.category.name
+            if semester_name not in grouped_attendance:
+                grouped_attendance[semester_name] = []
+            grouped_attendance[semester_name].append(attendance)
+        
+        return render(request, 'home/homes.html', {
+            'user_profile': user_profile,
+            'user_attendance': user_attendance,
+            'user_ad': user_ad,  # Pass user_ad to the template context
+            'grouped_attendance': grouped_attendance,
+            'user_cocurricular': user_cocurricular,
+            'user_exco': user_exco,
+            'placement_details': placement_details 
+        })
         
     except pdM.DoesNotExist:
-        user_profile = None
-        user_attendance=None
-     
-    grouped_attendance = {}
-    for attendance in user_attendance:
-        semester_name = attendance.category.name
-        if semester_name not in grouped_attendance:
-            grouped_attendance[semester_name] = []
-        grouped_attendance[semester_name].append(attendance)
+        messages.error(request, "User profile does not exist.")  
+        return redirect('landing.html')
            
-    print("user_attendance:", user_attendance)
+    # print("user_attendance:", user_attendance)
     # user_profile=pdM.objects.get(RN=user.username)
     
-    return render(request,'home/homes.html', {'user_profile':user_profile, 'grouped_attendance': grouped_attendance, 'user_ad':user_ad})
+    # return render(request,'home/homes.html', {'user_profile':user_profile, 'grouped_attendance': grouped_attendance, 'user_ad':user_ad})
     
     
 @login_required(login_url='landingpage') 
@@ -183,6 +223,54 @@ def att(request):
         
     return render(request,'att.html')
     #return HttpResponse('this is services page')
+
+
+@login_required(login_url='landingpage')
+def cocu(request):
+    if request.method == "POST":
+        sem= request.POST.get('sem')
+        professional_society= request.POST.get('professional_society')
+        internship= request.POST.get('internship')
+        paper_published= request.POST.get('paper_published')
+        
+        
+        user_profile = pdM.objects.get(RN=request.user.username)
+        # form = CoCurricularForm(request.POST)
+        cocu = cocuM(sem=sem,professional_society=professional_society, internship=internship,  paper_published= paper_published, user_profile=user_profile)
+        cocu.save()
+        # print(cocu)
+        messages.success(request, "Co-Curricular activities submitted successfully!")
+            # return redirect('home/homes')  # Redirect to home page after successful submission
+    # else:
+    #     form = CoCurricularForm()
+
+    return render(request, 'cocu.html')
+    
+    
+    # return render(request,'cocu.html')
+    #return HttpResponse('this is services page')
+
+@login_required(login_url='landingpage')
+def exco(request):
+    if request.method == "POST":
+        # print(request.POST) 
+        exsem= request.POST.get('exsem')
+        sports= request.POST.get('sports')
+        nss= request.POST.get('nss')
+        price= request.POST.get('price')
+                
+        user_profile = pdM.objects.get(RN=request.user.username)
+        
+        if exsem:
+            exco = excoM(exsem=exsem, sports=sports, nss=nss, price=price, user_profile=user_profile)
+            exco.save()
+            messages.success(request, "Extra-Curricular activities submitted successfully!")
+        else:
+            messages.error(request, "Semester field is required.")
+        
+    return render(request,'exco.html')
+    #return HttpResponse('this is services page')
+
 
 
 # def fetch(request):

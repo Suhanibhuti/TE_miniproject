@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Other Activities {% endblock title %}
+
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'oastyle.css' %}">
+{% endblock stylesheet %}
+
+{% block body %}
+
+<div class="container">
+    {% comment %} <div class="merge"> {% endcomment %}
+        <h2>Other Activities</h2>
+    <section class="card-container">
+    <a href="/cocu">
+        <div class="card">
+            <i class="fas fa-paint-brush"></i>
+            <h1>Co-Curricular Activities </h1>
+        </div>
+    </a>
+    <a href="/exco">
+        <div class="card">
+            <i class="fas fa-desktop"></i>
+            <h1> Extra Curricular Activities</h1>
+        </div>
+    </a>
+    
+         <a href="/plc">
+        <div class="card">
+            <i class="fas fa-handshake"></i>
+            <h1>Placement</h1>
+           
+        </div>
+    </a>
+    </section>
+</div>
+</div>
+
+{% endblock body %}
+

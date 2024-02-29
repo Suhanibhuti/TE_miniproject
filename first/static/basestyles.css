@@ -7,9 +7,9 @@ input::-webkit-inner-spin-button{
 button {
     border-radius: 10px;
     background-color: rgb(51, 56, 129);
-    height: 45px;
+    height: 47px;
     width: 100px;
-    padding: 18px 25px 0px 30px;
+    padding: 13px 25px 0px 25px;
     /* margin: auto; */
     cursor: pointer;
     display: flex;
@@ -17,6 +17,7 @@ button {
     text-align: center;
     border-top: 20px;
 }
+
 a {
     color: white;
     font-size: 20px;
@@ -142,7 +143,7 @@ p {
     color: black;
 }
 
-.about {
+/* .about {
     height: auto;
 }
 
@@ -155,13 +156,13 @@ p {
 .aboutpage {
     padding: 50px;
     margin: 0px 40px;
-}
+} */
 
 .textcolor {
     color: white;
 }
 
-.footertext {
+/* .footertext {
     height: 80px;
     background-color: burlywood;
     color: black;
@@ -169,7 +170,7 @@ p {
     align-items: center;
     justify-content: center;
     font-size: 24px;
-}
+} */
 
 
 

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Other Activities {% endblock title %}
+
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'plcstyle.css' %}">
+{% endblock stylesheet %}
+
+{% block body %}
+<section class="formSection">
+    <div class="container">
+        <div class="wrapper">
+            <div class="title-text">
+              <div class="title login">Placement</div>
+              <div class="title signup">Higher Studies</div>
+            </div>
+            <div class="form-container">
+              <div class="slide-controls">
+                <input type="radio" name="slide" id="login" checked>
+                <input type="radio" name="slide" id="signup">
+                <label for="login" class="slide login">Placement</label>
+                <label for="signup" class="slide signup">Higher Studies</label>
+                <div class="slider-tab"></div>
+              </div>
+              <div class="form-inner">
+                <form action="{% url 'plc' %}" method="post" class="login">
+                  {% csrf_token %}
+                  <div class="field">
+                    <input type="text" name="compname" placeholder="Company Name" required>
+                  </div>
+                  <div class="field">
+                    <input type="text" name="package" placeholder="Package" required>
+                  </div>
+                  <div class="field">
+                    <input type="number" name="semester" placeholder="Semester" required >
+                  </div>
+               
+                  <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="Submit">
+                  </div>
+                  <div class="signup-link">Not for placement? <a href=""> click Higher Studies</a></div>
+                </form>
+                <form action="#" class="signup">
+                  <div class="field">
+                    <input type="number" name="gre" placeholder="GRE Score" >
+                  </div>
+                  <div class="field">
+                    <input type="number" name="tofel" placeholder="TOFEL Score" >
+                  </div>
+                  <div class="field">
+                    <input type="number" name="cat" placeholder="CAT Score">
+                  </div>
+                  <div class="field">
+                    <input type="number" name="others" placeholder="Others">
+                  </div>
+                  <div class="field btn">
+                    <div class="btn-layer"></div>
+                    <input type="submit" value="Submit">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          </div>
+</section>
+{% load static %}
+<script src="{% static 'plcscript.js' %}"></script>
+
+
+{% endblock body %}

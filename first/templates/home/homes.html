@@ -23,8 +23,10 @@
     {% else %}
         <p>No profile details available.</p>
     {% endif %}
+</div>
+
  <br>
- <br>
+ <div class='container'>
  <h2>Your Attendance:</h2>
  {% with grouped_attendance.items as semester_attendances %}
  {% if semester_attendances %}
@@ -44,17 +46,19 @@
  <p>No attendance details available.</p>
  {% endif %}
 {% endwith %}
+</div>
 
 <br>
-<br>
+<div class='container'>
 <h2>Your Academic Details:</h2>
 {% if user_ad %}
 <ul>
     {% for academic_detail in user_ad %}
         <li>
-            <strong>AT 1: {{ academic_detail.at1 }} marks</strong><br>
+            <strong>{{ academic_detail.adSem }}</strong><br>
+            <strong>AT 1: {{ academic_detail.at1 }} marks</strong>
             <strong>AT 2: {{ academic_detail.at2 }} marks</strong><br>
-            <strong>IA 1: {{ academic_detail.ia1 }} marks</strong><br>
+            <strong>IA 1: {{ academic_detail.ia1 }} marks</strong>
             <strong>IA 2: {{ academic_detail.ia2 }} marks</strong><br>
             <strong>Prelim: {{ academic_detail.prelim }} marks</strong><br>
             <strong>End Semester: {{ academic_detail.endsem }} marks</strong><br>
@@ -70,8 +74,66 @@
 {% endif %}
 
 </div>
-{% endblock content %}
 
+<br>
+<div class="container">
+    <h2>Your Co-Curricular Activities:</h2>
+{% if user_cocurricular %}
+<ul>
+    {% for activity in user_cocurricular %}
+        <li>
+            <strong>{{ activity.sem }}</strong><br>
+            <strong>Professional Society: {{ activity.professional_society }}</strong><br>
+            <strong>Internship: {{ activity.internship }}</strong><br>
+            <strong>Paper Published: {{ activity.paper_published }}</strong><br>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>No co-curricular activities available.</p>
+{% endif %}
+</div>
+
+<br>
+<div class="container">
+    <h2>Extra Curricular Activities:</h2>
+{% if user_exco %}
+<ul>
+    {% for exco in user_exco %}
+        <li>
+            <strong>Semester: {{ exco.exsem }}</strong><br>
+            <strong>Sports: {{ exco.sports }}</strong><br>
+            <strong>NSS / Social Cell: {{ exco.nss }}</strong><br>
+            <strong>Competition / Participation / Prize / Awards: {{ exco.price }}</strong><br>
+        </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No extra curricular activities available.</p>
+{% endif %}
+
+</div>
+
+<br>
+<div class="container">
+    <h1>Placement Details</h1>
+    {% if placement_details %}
+        <ul>
+            {% for placement_detail in placement_details %}
+                <li>{{ placement_detail.compname }} - {{ placement_detail.package }}LPA - Semester {{ placement_detail.semester }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No placement details available.</p>
+    {% endif %}
+</div>
+
+
+
+
+
+
+{% endblock content %}
 {% comment %} {% block content %}
 <h2>Welcome {{ user }} </h2>
 

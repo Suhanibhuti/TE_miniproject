@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Other Activities {% endblock title %}
+
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cocustyles.css' %}">
+{% endblock stylesheet %}
+
+{% block body %}
+
+<section class="formSection">
+    <div class="container">
+
+        <form action="{% url 'exco' %}" method="post">
+            {% csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Extra Curricular Activities</span>
+                    <div class="input-field">
+                        <label for="exsem">Semester</label>
+
+                        <select name="exsem" class="exsem" id="exsem"  required>
+                            <option disabled selected>Select semester</option>
+                            <option>Semester 1</option>
+                            <option>Semester 2</option>
+                            <option>Semester 3</option>
+                            <option>Semester 4</option>
+                            <option>Semester 5</option>
+                            <option>Semester 6</option>
+                            <option>Semester 7</option>
+                            <option>Semester 8</option>
+                        </select>
+                    </div>
+
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Sports</label>
+                            <textarea name="sports"  cols="20" rows="8"></textarea>
+                        </div>
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>NSS / Social Cell</label>
+                                <textarea name="nss"  cols="20" rows="8"></textarea>
+                            </div>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label>Competition/ Participation / Prize / Awards</label>
+                                    <textarea name="price"  cols="20" rows="8"></textarea>
+                                </div>
+                            </div>
+                            <button class="nextBtn">
+                                <span class="btnText">Submit</span>
+                                <i class="uil uil-navigator"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</section>
+</div>
+{% endblock body %}

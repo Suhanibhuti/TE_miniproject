@@ -17,6 +17,7 @@
 
 </head>
     <body>
+        
       <header>
         <nav>
             <div class="navbarLogo">
@@ -30,16 +31,16 @@
                 <p>Agnel Technical Education Complex Sector 9-A, Vashi, Navi-Mumbai,Maharashtra,India PIN -400703</p>
             </div>
         </nav>
-
+        {% block navbar %}
         <div class="navbar">
                 <ul>
                     <li class="nav-link"><a href="/homes">Home</a></li>
                     <li class="nav-link"><a href="/pd">Personal Details</a></li>
                     <li class="nav-link"><a href="/att">Attendence</a></li>
                     <li class="nav-link"><a href="/ad">Academic Details</a></li>
-                    <li class="nav-link"><a href="/#">Other Activities</a></li>
+                    <li class="nav-link"><a href="/oa">Other Activities</a></li>
                     <li class="nav-link"><a href="https://sp.fcrit.ac.in/studentportal/Feedback.php">Feedback</a></li>
-
+                    
                     <button class="button">
                     <a href="{% url "logout" %}" class='btn btn-primary'>logout</a>
                     </button>
@@ -56,6 +57,7 @@
         {% endfor %}
         {% endif %}
     </header>
+    {% endblock navbar %}
 
         {% block content %}{% endblock content %}
 

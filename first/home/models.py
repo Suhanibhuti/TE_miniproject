@@ -62,7 +62,7 @@ class attM(models.Model):
     
     
 class adM(models.Model):
-    adSem= models.CharField(max_length=50, unique=True)
+    adSem= models.CharField(max_length=50)
     at1=models.IntegerField(null=True)
     at2=models.IntegerField(null=True)
     ia1=models.IntegerField(null=True)
@@ -73,4 +73,45 @@ class adM(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default =1) 
        
     def __str__(self):
-        return self.adSem
+        return f"{self.user.username}'s academic details for {self.adSem}"
+        
+
+class cocuM(models.Model):
+    sem = models.CharField(max_length=20, default=1)
+    professional_society = models.TextField()
+    internship = models.TextField()
+    paper_published = models.TextField()
+    user_profile = models.ForeignKey(pdM, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.sem
+
+
+class excoM(models.Model):
+    exsem = models.CharField(max_length=20, default=1)
+    sports = models.TextField()
+    nss = models.TextField()
+    price = models.TextField()
+    user_profile = models.ForeignKey(pdM, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.exsem
+    
+    
+class plcM(models.Model):
+    compname=models.CharField(max_length =122)
+    package = models.DecimalField(max_digits=10, decimal_places=2)
+    semester = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='placements')
+    
+    def __str__(self):
+        return f"{self.compname} - {self.package} - Semester {self.semester} "
+
+# class hsM(models.Model):
+#     gre=models.CharField(max_length =122)
+#     tofel=models.CharField(max_length =122)
+#     cat=models.CharField(max_length =122)
+    
+#     def __str__(self):
+#         return self.semester

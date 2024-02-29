@@ -1,0 +1,86 @@
+.container form .form {
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+.container form .title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0px 0;
+    color: #333;
+    padding-bottom: 25px;
+}
+.input-field label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #0e0d0d;
+    padding-top: 10px;
+}
+.input-field select, .input-field input[type="date"] {
+    color: #707070;
+}
+.container form .fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.formSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0rem;
+}
+
+form .fields .input-field {
+    display: flex;
+    width: calc(100% / 1 - 10px);
+    flex-direction: column;
+    margin: 4px 0;
+    padding-top: 10px;
+}
+
+
+textarea {
+    width: 440px;
+    height: 90px;
+    box-shadow: #d3d3d3;
+}
+
+.container form button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    /* margin: 25px 0; */
+    background-color: #4070f4;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    margin-top: 100px;
+}
+
+.container form .btnText {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.container form {
+    position: relative;
+    margin-top: 16px;
+    min-height: 600px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+form .buttons button, .nextBtn, .backBtn {
+    margin-right: 14px;
+}

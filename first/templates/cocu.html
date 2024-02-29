@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Co-Curricular Activities {% endblock title %}
+
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'cocustyles.css' %}">
+{% endblock stylesheet %}
+
+{% block body %}
+{% comment %} <div class="container"> {% endcomment %}
+    <section class="formSection">
+        <div class="container">
+
+            <form action="{% url 'cocu' %}" method="post">
+                {% csrf_token %}
+                <div class="form first">
+                    <div class="details personal">
+                        <span class="title">Co-Curricular Activities</span>
+                        <div class="input-field">
+                            <label>Semester</label>
+
+                            <select name="sem" id="sem" required>
+                                <option disabled selected>Select semester</option>
+                                <option>Semester 1</option>
+                                <option>Semester 2</option>
+                                <option>Semester 3</option>
+                                <option>Semester 4</option>
+                                <option>Semester 5</option>
+                                <option>Semester 6</option>
+                                <option>Semester 7</option>
+                                <option>Semester 8</option>
+                            </select>
+                        </div>
+
+                        <div class="fields">
+                            <div class="input-field">
+                                <label>Professional Society</label>
+                                <textarea name="professional_society"  cols="20" rows="8"></textarea>
+                            </div>
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label>Internship</label>
+                                    <textarea name="internship"  cols="20" rows="8"></textarea>
+                                </div>
+                                <div class="fields">
+                                    <div class="input-field">
+                                        <label>Paper Published</label>
+                                        <textarea name="paper_published"  cols="20" rows="8"></textarea>
+                                    </div>
+                                </div>
+                                <button class="nextBtn">
+                                    <span class="btnText">Submit</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </form>
+        </div>
+    </section>
+    {% comment %} <button class="nextBtn">
+        <span class="btnText">Submit</span>
+        <i class="uil uil-navigator"></i>
+    </button> {% endcomment %}
+</div>
+{% comment %} {% load static %}
+    <script src="{% static 'script.js' %}"></script> {% endcomment %}
+
+
+{% endblock body %}
