@@ -1,18 +1,17 @@
-{% extends 'base.html' %}
+{% extends 'baseM.html' %}
 
-{% block title %}Home Page {% endblock title %}
+{% block title %}Student Data {% endblock title %}
 
 {% block stylesheet %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'homestyle.css' %}">
+<link rel="stylesheet" href="{% static 'studentDatastyle.css' %}">
 {% endblock stylesheet %}
 
 
 {% block content %}
-<div class='container' id="pd">
+<div class='container1'>
     <h2>Welcome {{ user_profile.Fname }}</h2>
-    <br>
-    {% comment %} <br><h3><strong> Your Details:</strong></h3> {% endcomment %}
+    <br><h3><strong> Details:</strong></h3>
     {% if user_profile %}
         <p><strong> Roll no: {{ user_profile.RN }}</p></strong> 
         <p><strong> Email: {{ user_profile.Email }}</p></strong> 
@@ -25,10 +24,11 @@
         <p>No profile details available.</p>
     {% endif %}
 </div>
-
+ 
  <br>
+
  <div class='container' id="att">
-    <h2>Your Attendance:</h2>
+    <h2>Attendance:</h2>
     
     {% with grouped_attendance.items as semester_attendances %}
         {% if semester_attendances %}
@@ -58,52 +58,12 @@
             <p>No attendance details available.</p>
         {% endif %}
     {% endwith %}
-    <button class="add-detail-btn" onclick="location.href='{% url 'att' %}'">Add Detail</button>
+    {% comment %} <button class="add-detail-btn" onclick="location.href='{% url 'att' %}'">Add Detail</button> {% endcomment %}
 </div>
 
-
- 
- {% comment %}
- <div class='container'>
- <h2>Your Attendance:</h2>
-  
- <div class="dropdown">
-    <button class="dropbtn">Semester</button>
-    <div class="dropdown-content">
-        <a href="#">Semester 1</a>
-        <a href="#">Semester 2</a>
-        <a href="#">Semester 3</a>
-        <a href="#">Semester 4</a>
-        <a href="#">Semester 5</a>
-        <a href="#">Semester 6</a>
-        <a href="#">Semester 7</a>
-        <a href="#">Semester 8</a>
-    </div>
-</div> 
- {% with grouped_attendance.items as semester_attendances %}
- {% if semester_attendances %}
- <ul>
-     {% for semester, attendances in semester_attendances %}
-         <li><strong>{{ semester }}</strong>:
-             <ul>
-                 {% for attendance in attendances %}
-                     {{ attendance.month }}: {{ attendance.percentage }}% 
-                     <br>
-                 {% endfor %}
-             </ul>
-         </li>
-     {% endfor %}
- </ul>
- {% else %}
- <p>No attendance details available.</p>
- {% endif %}
-{% endwith %}
-</div>
- {% endcomment %}
-<br>
-
-<div class='container' id="ad">
-    <h2>Your Academic Details:</h2>
+  <br>
+  <div class='container' id="ad">
+    <h2>Academic Details:</h2>
     {% if user_ad %}
         <table>
             <thead>
@@ -136,14 +96,14 @@
     {% else %}
         <p>No academic details available.</p>
     {% endif %}
-    <button class="add-detail-btn" onclick="location.href='{% url 'ad' %}'">Add Detail</button>
+    {% comment %} <button class="add-detail-btn" onclick="location.href='{% url 'ad' %}'">Add Detail</button> {% endcomment %}
 
 </div>
 
 
 <br>
 <div class="container" id="oa">
-    <h2>Your Co-Curricular Activities:</h2>
+    <h2>Co-Curricular Activities:</h2>
     {% if user_cocurricular %}
         <table>
             <thead>
@@ -168,14 +128,10 @@
     {% else %}
         <p>No co-curricular activities available.</p>
     {% endif %}
-    <button class="add-detail-btn" onclick="location.href='{% url 'cocu' %}'">Add Detail</button>
+    {% comment %} <button class="add-detail-btn" onclick="location.href='{% url 'cocu' %}'">Add Detail</button> {% endcomment %}
 
 </div>
-
-
-
 <br>
-
 <div class="container" >
     <h2>Extra Curricular Activities:</h2>
     {% if user_exco %}
@@ -202,17 +158,13 @@
     {% else %}
         <p>No extra-curricular activities available.</p>
     {% endif %}
-    <button class="add-detail-btn" onclick="location.href='{% url 'exco' %}'">Add Detail</button>
+    {% comment %} <button class="add-detail-btn" onclick="location.href='{% url 'exco' %}'">Add Detail</button> {% endcomment %}
 
 </div>
 
-
-
-
 <br>
-
 <div class="container">
-    <h1>Placement Details</h1>
+    <h2>Placement Details:</h2>
     {% if placement_details %}
         <table>
             <thead>
@@ -235,9 +187,10 @@
     {% else %}
         <p>No placement details available.</p>
     {% endif %}
-    <button class="add-detail-btn" onclick="location.href='{% url 'plc' %}'">Add Detail</button>
+    {% comment %} <button class="add-detail-btn" onclick="location.href='{% url 'plc' %}'">Add Detail</button> {% endcomment %}
 
 </div>
+
 
 <br>
 <div class="container">
@@ -268,17 +221,33 @@
     {% else %}
         <p>No higher studies data available.</p>
     {% endif %}
-    <button class="add-detail-btn" onclick="location.href='{% url 'hs' %}'">Add Detail</button>
+    {% comment %} <button class="add-detail-btn" onclick="location.href='{% url 'hs' %}'">Add Detail</button> {% endcomment %}
 
 </div>
 
 
 
 
-{% endblock content %} 
+{% endblock content %}
+{% comment %} {% block content %}
+<h2>Welcome {{ user }} </h2>
+
+{% if fetchdata %}
+    <p>Data is present</p>
+    {% for data in fetchdata %}
+        <h1> Welcome {{ data.Fname }} </h1><br>
+        {% comment %} {{ data.RN }}<br> 
+        <!-- Add other fields as needed -->
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No data available</p>
+{% endif %}
+
+{% endblock content %} {% endcomment %}
 
 {% block body %}
-{% load static %}
-    <script src="{% static 'homescript.js' %}"></script>
 
+{% load static %}
+    <script src="{% static 'navscript.js' %}"></script>
 {% endblock body %}

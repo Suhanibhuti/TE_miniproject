@@ -43,7 +43,8 @@
                   </div>
                   <div class="signup-link">Not for placement? <a href=""> click Higher Studies</a></div>
                 </form>
-                <form action="#" class="signup">
+                <form action="{% url 'hs' %}" method="post" class="signup">
+                  {% csrf_token %}
                   <div class="field">
                     <input type="number" name="gre" placeholder="GRE Score" >
                   </div>

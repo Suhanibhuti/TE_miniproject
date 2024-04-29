@@ -1,6 +1,17 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+# from django.contrib.auth.models import AbstractUser
+from django.conf import settings
+
+# class CustomUser(AbstractUser):
+#     STUDENT = 'student'
+#     MENTOR = 'mentor'
+#     ROLE_CHOICES = [
+#         (STUDENT, 'Student'),
+#         (MENTOR, 'Mentor'),
+#     ]
+#     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
 
 
 # Create your models here.
@@ -70,6 +81,7 @@ class adM(models.Model):
     prelim=models.IntegerField(null=True)
     endsem=models.IntegerField(null=True)
     perf=models.CharField(max_length =122)
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default =1) 
     user = models.ForeignKey(User, on_delete=models.CASCADE, default =1) 
        
     def __str__(self):
@@ -103,15 +115,43 @@ class plcM(models.Model):
     compname=models.CharField(max_length =122)
     package = models.DecimalField(max_digits=10, decimal_places=2)
     semester = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='placements')
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='placements')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='placements',default=1)
     
     def __str__(self):
         return f"{self.compname} - {self.package} - Semester {self.semester} "
 
-# class hsM(models.Model):
-#     gre=models.CharField(max_length =122)
-#     tofel=models.CharField(max_length =122)
-#     cat=models.CharField(max_length =122)
+class hsM(models.Model):
+    gre=models.CharField(max_length =122)
+    tofel=models.CharField(max_length =122)
+    cat=models.CharField(max_length =122)
+    others=models.CharField(max_length =122,default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='higher_std',default=1)
     
-#     def __str__(self):
-#         return self.semester
+    def __str__(self):
+        return self.gre
+
+
+class pdmM(models.Model):
+    FnameM= models.CharField(max_length =122)
+    IDM= models.CharField(max_length =122)
+    DOBM= models.DateField()
+    EmailM= models.CharField(max_length =122)
+    MNM= models.CharField(max_length =122)
+    GenM= models.CharField(max_length =122)
+    depM= models.CharField(max_length =122)
+    
+    def __str__(self):
+        return self.FnameM
+    
+    
+class Student(models.Model):
+    roll_number = models.CharField(max_length=20)
+    name = models.CharField(max_length=100)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+
+    def __str__(self):
+        return f"{self.roll_number} - {self.name}"
+    
+    
+    

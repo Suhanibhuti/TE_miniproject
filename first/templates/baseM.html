@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %}{% endblock title %}</title>
+
+
+    {% load static %}
+    {% comment %} <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'basestylesM.css' %}">
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" />
+
+    {% block stylesheet %}{% endblock stylesheet %}
+    {% comment %} {% load static %}
+    <script src="{% static 'basescriptM.js' %}"></script>  {% endcomment %}
+
+
+</head>
+    <body>
+        
+      <header>
+        <nav>
+            {% comment %} <div class="navbarLogo">
+                <div class="logo">
+                    <img src="static/fcritlogo.png" alt="">
+                </div>
+            </div>
+            <div class="collegeAddress">
+                <div class="heading"><b>'Agnel Charities'</b></div>
+                <div class="midheading">FR.C.RODRIGUES INSTITUTE OF TECHNOLOG</div>
+                <p>Agnel Technical Education Complex Sector 9-A, Vashi, Navi-Mumbai,Maharashtra,India PIN -400703</p>
+            </div>
+        </nav> {% endcomment %}
+
+        {% block navbar %}
+        <div class="logo">
+            <i class="bx bx-menu menu-icon"></i>
+            <span class="logo-name">Welcome, {{ user_name }}</span>
+        </div>
+        <div class="sidebar">
+            <div class="logo">
+                <i class="bx bx-menu menu-icon"></i>
+                <span class="logo-name">Mentor's Login</span>
+            </div>
+
+            <div class="sidebar-content">
+                <ul class="lists">
+                    <li class="list">
+                        <a href="/homesM" class="nav-link">
+                            <i class="bx bx-home-alt icon"></i>
+                            <span class="link">Home</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="/pdm" class="nav-link">
+                            <i class="bx bx-home-alt icon"></i>
+                            <span class="link">Personal Details</span>
+                        </a>
+                    </li>
+                    <li class="list">
+                        <a href="/report" class="nav-link">
+                            <i class="bx bx-bar-chart-alt-2 icon"></i>
+                            <span class="link">Generate Report</span>
+                        </a>
+                    </li>
+                 
+                </ul>
+                <div class="bottom-cotent">
+                   
+                    <li class="list">
+                        <a href="{% url "logout" %}" class="nav-link">
+                            <i class="bx bx-log-out icon"></i>
+                            <span class="link">Logout</span>
+                        </a>
+                    </li>
+                </div>
+            </div>
+        </div>
+        <section class="overlay"></section>
+    
+         {% endblock navbar %}
+        {% comment %} </nav> {% endcomment %}
+        </header> 
+        <div class="messages-container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>{{ message }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    
+    
+        
+        
+   
+
+   
+    {% comment %} {% if messages %}
+    {% for message in messages %}
+    <div class="alert  alert-{{ message.tags }}">
+      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span><strong>
+      {{ message }}</strong>
+    </div>
+    {% endfor %}
+    {% endif %} {% endcomment %}
+       
+
+{% comment %}<script src="basescriptM.js"></script> {% endcomment %}
+        {% block content %}{% endblock content %}
+        
+        {% block body %}    {% endblock body %}
+        {% comment %} <script src="static/script.js"></script>  {% endcomment %}
+</body>
+</html>
+
+

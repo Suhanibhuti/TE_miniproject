@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from django.contrib.messages import constants as messages
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'home.context_processors.user_info',
             ],
         },
     },
@@ -83,9 +85,15 @@ DATABASES = {
     }
 }
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
+
+
+# AUTH_USER_MODEL = 'home.CustomUser'
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -129,5 +137,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #added manually
 
 STATICFILES_DIRS = [
-    (BASE_DIR / "static")
+    (BASE_DIR / "static"),
+    
 ]

@@ -1,0 +1,221 @@
+{% extends 'baseM.html' %}
+
+{% block title %}ReportM {% endblock title %}
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'reportstyle.css' %}">
+
+{% endblock stylesheet %}
+
+
+{% block body %}
+<div class="container">
+    <div class="top"><div class="logos">
+        <img src="static/fcritlogo.png" alt="">
+    </div>
+    <div class="collegeAddress">
+        <div class="heading">'Agnel Charities'</div>
+        <div class="midheading"><b>FR.C.RODRIGUES INSTITUTE OF TECHNOLOG</b></div>
+        <p><b>Agnel Technical Education Complex Sector 9-A, Vashi, Navi-Mumbai,Maharashtra,India PIN -400703</b>
+        </p>
+    </div>
+    </div>          
+    <br>
+    <form action="/printr" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="head">
+            <div class="input-fields">
+                <label>Department of </label>
+                <select name="category" required>
+                    <option disabled selected>Select Branch</option>
+                    <option> Computer Engineering</option>
+                    <option>Electronics And Telecommunication Engineering</option>
+                    <option>Electrical Engineering</option>
+                    <option>Mechanical Engineering</option>
+                </select>
+            </div>
+
+            <div class="input-fields">
+                <label>Mentoring Report for SH -</label>
+                <input type="year" placeholder="Enter the date" name="sh" required>
+            </div>
+
+            <div class="input-fields">
+                <label> Mentor Batch - </label>
+                <textarea id="" cols="15" rows="2" name="batch" required></textarea>
+            </div>
+        </div>
+        <div class="mid">
+            <div class="fields">
+                <div class="input-field">
+                    <label>Semester: </label>
+
+                    <select name="sem" required>
+                        <option disabled selected>Select semester</option>
+                        <option>Semester 1</option>
+                        <option>Semester 2</option>
+                        <option>Semester 3</option>
+                        <option>Semester 4</option>
+                        <option>Semester 5</option>
+                        <option>Semester 6</option>
+                        <option>Semester 7</option>
+                        <option>Semester 8</option>
+                    </select>
+                    <label>Date: </label>
+                    <input type="date" placeholder="Enter the date" name="date" required>
+
+                </div>
+                <div class="fields">
+                    <div class="input-field">
+                        <label> No. of Students in batch: </label>
+                        <textarea class="styled-textarea" id="" cols="5" rows="2" name="stdcount" required></textarea>
+                        <label> Roll Number: </label>
+                        <textarea class="styled-textarea" id="" cols="20" rows="2" name="stdrn" required></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="table-container">
+                <table class="custom-table">
+                    <thead>     
+                        <tr>
+                            <th>Sr No.</th>
+                            <th>Mentoring Summary</th>
+                            <th>Mentoring Duration 1:
+
+                                <input type="date" placeholder=" Enter the date" name="dur1" required>
+                            </th>
+                            <th>Mentoring Duration 2:
+
+                                <input type="date" placeholder="Enter the date" name="dur2" required>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Number of students identified as attendence defaulters</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="Atdef1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="Atdef2" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Number of students identified as academic performance defaulters</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="apdef1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="apdef2" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Number of students participating in co-curricular activities</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="ca1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="ca2" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Number of students participating in extra-curricular activities</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="ea1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="ea2" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Number of students placed (for BE only)</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="bep1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="bep2" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Number of students appearing for competitive exams/opting for higher studies (For TE
+                                and BE only)</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="hghs1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="hghs2" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Number of special cases refereed to Head of the Department</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="schod1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="schod2" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Number of special cases refereed to Principal</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="scp1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="scp2" required></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>Other points discussed,if any:</td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="other1" required></textarea>
+                            </td>
+                            <td><textarea class="styled-textarea" id="" cols="17" rows="2" name="other2" required></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="content">
+                Impact of Mentoring: <td><textarea id="" cols="90" rows="3" name="impact" required></textarea> </td>
+
+            </div>
+
+            {% comment %} <form method="post" enctype="multipart/form-data" action="{% url 'upload_image' %}">
+                {% csrf_token %}
+                <input type="file" name="image">
+                <button type="submit">Upload Image</button>
+            </form> {% endcomment %}
+
+            <div class="gap">
+            <div class="upload-container">
+                <h4>Signature,Name and Designation of mentor</h4>
+            </div>
+            <div class="upload-container">
+                <h4>Signature of HOD</h4>
+            </div>
+            </div>
+        
+    
+            
+            {% comment %} <div class="upload-container">
+
+                <input type="file" id="fileInput2" name="img2" accept="image/*">
+                <label for="fileInput2" class="upload-btn">Choose Image</label>
+                <h4>Signature of HOD</h4>
+                <div id="preview2"></div>
+            </div>  {% endcomment %}
+
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+            <button class="sumbit">
+                <span class="btnText">Submit</span>
+                <i class="uil uil-navigator"></i>
+            </button>
+
+            {% comment %} <button onclick="exportToPDF()">Export to PDF</button> {% endcomment %}
+
+
+        </div>
+    </form>
+
+    {% load static %}
+        <script src="{% static 'reportscript.js' %}"></script>
+
+{% endblock body %}

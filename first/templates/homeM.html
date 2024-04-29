@@ -1,0 +1,74 @@
+{% extends 'baseM.html' %}
+
+{% block title %}Home {% endblock title %}
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'homestyleM.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+{% endblock stylesheet %}
+
+
+{% block body %}
+
+
+<div class="container">
+    <h3>Students</h3>
+
+    <div class="search-container">
+        
+        {% comment %} <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search..."> {% endcomment %}
+        <button class="add-row-btn" onclick="addRow()"> +Add Student</button>
+    </div>
+
+    <form id="myForm" method="post" action="/save_table_data/">
+        {% csrf_token %}
+
+        <input type="hidden" id="hiddenRollNumber" name="rollNumber">
+    <input type="hidden" id="hiddenName" name="name">
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>Sr No.</th>
+                <th>Roll Number</th>
+                <th>Name of the student</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Table body will be dynamically populated with student data -->
+            {% comment %} {% for student in students %} {% endcomment %}
+            {% for student in student_data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url 'student_data' roll_number=student.roll_number %}" onclick="viewStudent('{{ student.roll_number }}')">{{ student.roll_number }}</a></td>
+            {% comment %} <td><a href="/studentData" onclick="viewStudent('{{ student.roll_number }}')">{{ student.roll_number }}</a></td> {% endcomment %}
+            {% comment %} <td>{{ student.roll_number }}</td> {% endcomment %}
+            <td>{{ student.name }}</td>
+            {% comment %} <td><button class="delete-btns" onclick="deleteStudent('{{ student.roll_number }}')">Delete</button></td> {% endcomment %}
+            <!-- Add data attribute with the delete URL to the delete button -->
+            <td><button class="delete-btns" data-delete-url="{% url 'delete_student' %}" onclick="deleteStudent('{{ student.roll_number }}')">Delete</button></td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+    <button class="save-btn" onclick="saveTableData()">Save</button>
+    {% comment %} <button class="save-btn" onclick="deleteStudent()">Delete</button> {% endcomment %}
+</form>
+{% comment %} 
+<form method="post" action="{% url 'delete_student' %}">
+    {% csrf_token %}
+    <button class="save-btn" onclick="deleteStudent()">Delete</button>
+</form> {% endcomment %}
+
+
+</div>
+
+{% load static %}
+    <script src="{% static 'basescriptM.js' %}"></script>
+
+{% endblock body %}

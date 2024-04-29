@@ -1,0 +1,84 @@
+{% extends 'baseM.html' %}
+
+{% block title %}pdm {% endblock title %}
+
+
+{% block stylesheet %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'pdmstyle.css' %}">
+
+{% endblock stylesheet %}
+
+{% block body %}
+
+
+<section class="formSection">
+    <div class="container">
+     
+        <form action="/pdm" method="post">
+            {% csrf_token %}
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Personal Details</span>
+                    <div class="fields">
+                        <div class="input-field">
+                            <label>Full Name</label>
+                            <input type="text" name="FnameM" placeholder="Enter your name" required>
+                        </div>
+                        <div class="input-field">
+                            <label>ID</label>
+                            <input type="text" name="IDM" placeholder="Enter your ID" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Date of Birth</label>
+                            <input type="date" name="DOBM" placeholder="Enter birth date" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Email</label>
+                            <input type="text" name="EmailM" placeholder="Enter your email" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Mobile Number</label>
+                            <input type="number" name="MNM" placeholder="Enter mobile number" required>
+                        </div>
+                        <div class="input-field">
+                            <label>Gender</label>
+                            <select name="GenM" required>
+                                <option disabled selected>Select gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                        <div class="input-field">
+                            <label> Department</label>
+
+                            <select name="depM" required>
+                                <option disabled selected>Select Department </option>
+                                <option>Computer</option>
+                                <option>Electronics And Telecommunication</option>
+                                <option>Electrical</option>
+                                <option>Mechanical</option>
+                            </select>
+                        </div>
+                    </div>
+                  
+                    {% comment %} </div> {% endcomment %}
+                {% comment %} </div> {% endcomment %}
+        
+                            <button class="sumbit">
+                                <span class="btnText">Submit</span>
+                                <i class="uil uil-navigator"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    {% comment %} </div> {% endcomment %}
+</section>
+
+
+{% load static %}
+    <script src="{% static 'pdmscript.js' %}"></script>
+
+{% endblock body %}
