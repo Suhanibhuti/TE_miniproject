@@ -1,5 +1,5 @@
 ### Online Mentoring System
-## A modern solution to replace traditional mentorship cards, providing a streamlined system to manage student and mentor interactions, track progress, and generate reports. This system digitizes the mentorship journey, allowing mentors and mentees to focus on growth and development.
+A modern solution to replace traditional mentorship cards, providing a streamlined system to manage student and mentor interactions, track progress, and generate reports. This system digitizes the mentorship journey, allowing mentors and mentees to focus on growth and development.
 
 ---
 
